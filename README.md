@@ -1,4 +1,4 @@
-This repository aims to improve the functionality of open-slide's example web application
+This repository aims to improve the functionality of open-slide's example web application <br>
 WARNING: This repository is quite hacky and the code isn't pretty. It seems to work, though. 
 
 Added functionality:
