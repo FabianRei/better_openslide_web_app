@@ -1,7 +1,7 @@
 This repository aims to improve the functionality of open-slide's example web application <br>
 Just **run improved_multiserver.py** and it gives you more/better functionality compared to deepzoom_multiserver.py <br>
 WARNING: This repository is quite hacky and the code isn't pretty. You might not be able to run deepzoom_multiserver.py 
-through this repo. It seems to work, though. 
+through this repo.
 
 Added functionality:
 
