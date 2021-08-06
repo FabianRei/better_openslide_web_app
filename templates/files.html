@@ -14,7 +14,7 @@ li.none {
 <h1>Available Slides</h1>
 
 <ul>
-    {% for entry in root_dir.children recursive %}
+    {% for entry in root_dir.children recursive%}
         <li>
             {% if entry.url_path %}
                 <a href="{{ url_for('slide', path=entry.url_path) }}">

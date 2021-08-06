@@ -74,7 +74,7 @@ div#properties dd {
 </style>
 
 <div id="images">
-    <h1>View</h1>
+    <h1>View of {{ file }}</h1>
     <div class="current-slide">
         <a class="load-slide" href="#" data-url="{{ slide_url }}"
                 data-mpp="{{ slide_mpp }}">Slide</a>
@@ -169,5 +169,65 @@ $(document).ready(function() {
                 parseFloat($(this).attr('data-mpp')));
         ev.preventDefault();
     });
+});
+    /*
+    Replace server url with actual hostname/ip and port of
+    your python server
+    */
+    var SERVER_URL = "http://localhost:8080/";
+
+    $(document).keypress(function(e) {
+        // 39 is right-arrow, 37 is left-arrow
+      if (e.keyCode === 39) {
+        /*
+        If shift + w key combination, issue POST request to
+        server running at address
+        */
+        $.post("/next");
+
+        console.log("Shift + w detected");
+      }
+    });
+</script>
+
+<script>
+/*
+Replace server url with actual hostname/ip and port of
+your python server
+*/
+var SERVER_URL = "http://localhost:8080/";
+
+$(document).keypress(function(e) {
+
+  if (e.shiftKey && e.keyCode === 68) {
+    /*
+    a = 65
+    d = 68
+    e.shiftKey && e.keyCode === 87
+    If shift + w key combination, issue POST request to
+    server running at address
+    */
+      location.href = '/next_slide'
+    //$.post("/next_slide");
+
+    console.log("Shift + d pressed");
+  }
+});
+
+$(document).keypress(function(e) {
+
+  if (e.shiftKey && e.keyCode === 65) {
+    /*
+    a = 65
+    d = 68
+    e.shiftKey && e.keyCode === 87
+    If shift + w key combination, issue POST request to
+    server running at address
+    */
+      location.href = '/prev_slide'
+    //$.post("/next_slide");
+
+    console.log("Shift + a pressed");
+  }
 });
 </script>

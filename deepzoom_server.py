@@ -71,6 +71,8 @@ def load_slide():
     }
     opts = {v: app.config[k] for k, v in config_map.items()}
     slide = open_slide(slidefile)
+    print(slide)
+    print(slide.associated_images)
     app.slides = {SLIDE_NAME: DeepZoomGenerator(slide, **opts)}
     app.associated_images = []
     app.slide_properties = slide.properties
@@ -78,6 +80,7 @@ def load_slide():
         app.associated_images.append(name)
         slug = slugify(name)
         app.slides[slug] = DeepZoomGenerator(ImageSlide(image), **opts)
+    print(app.slides)
     try:
         mpp_x = slide.properties[openslide.PROPERTY_NAME_MPP_X]
         mpp_y = slide.properties[openslide.PROPERTY_NAME_MPP_Y]
@@ -92,6 +95,9 @@ def index():
     associated_urls = {
         name: url_for('dzi', slug=slugify(name)) for name in app.associated_images
     }
+    print(associated_urls)
+    print(slide_url)
+    print([name for name in app.associated_images])
     return render_template(
         'slide-multipane.html',
         slide_url=slide_url,
@@ -104,6 +110,7 @@ def index():
 @app.route('/<slug>.dzi')
 def dzi(slug):
     format = app.config['DEEPZOOM_FORMAT']
+    print(slug)
     try:
         resp = make_response(app.slides[slug].get_dzi(format))
         resp.mimetype = 'application/xml'

@@ -52,7 +52,7 @@ DEEPZOOM_FORMAT = 'jpeg'
 DEEPZOOM_TILE_SIZE = 254
 DEEPZOOM_OVERLAP = 1
 DEEPZOOM_LIMIT_BOUNDS = True
-DEEPZOOM_TILE_QUALITY = 75
+DEEPZOOM_TILE_QUALITY = 100
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -77,6 +77,7 @@ class _SlideCache:
         osr = OpenSlide(path)
         slide = DeepZoomGenerator(osr, **self.dz_opts)
         slide.properties = osr.properties
+        print(slide.associated_images)
         try:
             mpp_x = osr.properties[openslide.PROPERTY_NAME_MPP_X]
             mpp_y = osr.properties[openslide.PROPERTY_NAME_MPP_Y]
@@ -185,7 +186,12 @@ def tile(path, level, col, row, format):
     resp.mimetype = 'image/%s' % format
     return resp
 
-
+SLIDE_CACHE_SIZE = 10
+DEEPZOOM_FORMAT = 'jpeg'
+DEEPZOOM_TILE_SIZE = 254
+DEEPZOOM_OVERLAP = 1
+DEEPZOOM_LIMIT_BOUNDS = True
+DEEPZOOM_TILE_QUALITY = 100
 if __name__ == '__main__':
     parser = OptionParser(usage='Usage: %prog [options] [slide-directory]')
     parser.add_option(
